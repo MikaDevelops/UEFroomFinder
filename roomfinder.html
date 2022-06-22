@@ -26,6 +26,11 @@
                     "tunnus":"M102",
                     "kapasiteetti":45,
                     "videoneuvottelulaite": false
+                },
+                {
+                    "tunnus":"C1",
+                    "kapasiteetti":600,
+                    "videoneuvottelulaite":false
                 }
             ],
 
@@ -86,6 +91,9 @@
         <input type="checkbox" id="kampus2" name="kampus2" value="Kuopio" checked="checked">
         <label for="kampus2">Kuopio</label>
         <br><br>
+        <input type="checkbox" id="vc" name="vc" value="vc">
+        <label for="vc">Videoneuvottelulaite (voi liittyä UEF:n MS Teams kokouksiin)</label>
+        <br><br>
 
         Henkilöitä paikalla:<br>
         <div class="slidercontainer">
@@ -114,30 +122,46 @@
         liukuri.value = this.value;
     }
     function listaa(){
-        //tyhjennä
+
+        //tyhjennä ensin vanhat pois
         document.getElementById("taulukko").innerHTML="";
         
+        // teksti, johon tuloksia lisätään
         var testausta = "";
 
+        // kampus luuppi
         for(let kampus in tilat){
 
+            //tila luuppi
             for (let tila in tilat[kampus]){
 
                 if (document.getElementById('kampus1').checked
                 && tilat[kampus][tila].kapasiteetti >= luku.value){
-                    if (kampus == "Joensuu"){
+                    if (kampus == "Joensuu" && document.getElementById('vc').checked == 
+                    tilat[kampus][tila].videoneuvottelulaite){
                         testausta += kampus +"   " 
                         + tilat[kampus][tila].tunnus+"   " 
                         + tilat[kampus][tila].kapasiteetti + "<br>";
-                }}
+                    } else if (kampus == "Joensuu" && !document.getElementById('vc').checked){
+                        testausta += kampus +"   " 
+                        + tilat[kampus][tila].tunnus+"   " 
+                        + tilat[kampus][tila].kapasiteetti + "<br>";
+                    }
+                }
 
                 if (document.getElementById('kampus2').checked
                 && tilat[kampus][tila].kapasiteetti >= luku.value){
-                    if (kampus == "Kuopio"){
+                    if (kampus == "Kuopio"&& document.getElementById('vc').checked == 
+                    tilat[kampus][tila].videoneuvottelulaite){
                         testausta += kampus +"   " 
                         + tilat[kampus][tila].tunnus+"   " 
                         + tilat[kampus][tila].kapasiteetti + "<br>";
-                }}
+                    } else if (kampus == "Kuopio" && !document.getElementById('vc').checked){
+                        testausta += kampus +"   " 
+                        + tilat[kampus][tila].tunnus+"   " 
+                        + tilat[kampus][tila].kapasiteetti + "<br>";
+                    } 
+                }
 
             }
         }
