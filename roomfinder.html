@@ -7,6 +7,20 @@
     
     <title>UEF Room Finder</title>
 
+    <style>
+
+        /* Vähän väljyyttä taulukon soluihin  
+             Some spacing inside table cells*/ 
+         th, td {
+             padding-top:    5px;
+             padding-bottom: 5px;
+             padding-left:   10px;
+             padding-right:  10px;
+             text-align: left;
+         }
+
+     </style>
+
 </head>
 
 <body>
@@ -36,23 +50,197 @@
 
         Rajaa liian isot tilat<br>
         Filter too big rooms:
-        <div class="slidercontainer2">
+        <div class="slidercontainer">
             <input type="range" min="10" max="600" value="600" class="slider" id="liuku_max">
             <br><input id="luku_max" name="luku_max" type="number" value=""><br><br>
         </div>
 
-        <button type="button" onclick="listaa()">listaa tilat</button> <br><br><br>
+        <button type="button" onclick="listaa()">Rajaa listaa / Filter list</button> <br><br><br>
         
         
 
     </form>
 
+<table id="tilataulukko">
 
+    <!-- Otsikko rivi
+         Headers-->
+    <tr>
+        <th>Kampus</th>
+        <th>Rakennus</th>
+        <th>Tilatyyppi</th>
+        <th>Tilatunnus</th>
+        <th>Henkilömäärä</th>
+        <th>Videoneuvottelulaite</th>
+        <th>Tilan AV-ohje</th>
+    </tr>
+
+    <!-- Tilojen tiedot
+        Room information-->
+        <tr id="rivi0"><td>Joensuu</td><td>Agora</td><td>auditorio</td><td>AG100</td><td>80</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi1"><td>Joensuu</td><td>Agora</td><td>auditorio</td><td>AG101</td><td>50</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi2"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG102</td><td>30</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi3"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG103</td><td>22</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi4"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG104</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi5"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG105</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi6"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG106</td><td>40</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi7"><td>Joensuu</td><td>Agora</td><td>simulaatioterapiatila</td><td>AG107</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi8"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG108</td><td>28</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi9"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG109</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi10"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG201</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi11"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG202</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi12"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG203</td><td>16</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi13"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG205</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi14"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG206</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi15"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG207</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi16"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG208</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi17"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG209</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi18"><td>Joensuu</td><td>Agora</td><td>seminaarisali</td><td>AG210</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi19"><td>Joensuu</td><td>Agora</td><td>itseopiskelutila</td><td>AG211</td><td>15</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi20"><td>Joensuu</td><td>Agora</td><td>käännöspaja</td><td>AG212</td><td>15</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi21"><td>Joensuu</td><td>Agora</td><td>kielistudio</td><td>AG213</td><td>12</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi22"><td>Joensuu</td><td>Agora</td><td>kielistudio</td><td>AG214</td><td>18</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi23"><td>Joensuu</td><td>Agora</td><td>kielistudio</td><td>AG215</td><td>18</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi24"><td>Joensuu</td><td>Agora, Teologisiipi</td><td>auditorio</td><td>AT100</td><td>119</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi25"><td>Joensuu</td><td>Agora, Teologisiipi</td><td>kappeli</td><td>AT101</td><td>20</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi26"><td>Joensuu</td><td>Agora, Teologisiipi</td><td>seminaarisali</td><td>AT102</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi27"><td>Joensuu</td><td>Agora, Teologisiipi</td><td>musiikkiamfi</td><td>AT103</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi28"><td>Joensuu</td><td>Agora, Teologisiipi</td><td>musiikkisali</td><td>AT104</td><td>16</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi29"><td>Joensuu</td><td>Agora, Teologisiipi</td><td>seminaarisali</td><td>AT201</td><td>12</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi30"><td>Joensuu</td><td>Aurora Ii</td><td>auditorio</td><td>AU100</td><td>250</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi31"><td>Joensuu</td><td>Aurora Ii</td><td>seminaarisali</td><td>AU101</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi32"><td>Joensuu</td><td>Aurora Ii</td><td>seminaarisali</td><td>AU102</td><td>40</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi33"><td>Joensuu</td><td>Aurora Ii</td><td>kokoushuone</td><td>AU104</td><td>12</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi34"><td>Joensuu</td><td>Aurora Ii</td><td>kokoushuone</td><td>AU105</td><td>8</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi35"><td>Joensuu</td><td>Aurora</td><td>kokoushuone</td><td>AU110</td><td>10</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi36"><td>Joensuu</td><td>Aurora</td><td>seminaarisali</td><td>AU111</td><td>56</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi37"><td>Joensuu</td><td>Aurora</td><td>seminaarisali</td><td>AU112</td><td>31</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi38"><td>Joensuu</td><td>Aurora</td><td>seminaarisali</td><td>AU202</td><td>40</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi39"><td>Joensuu</td><td>Aurora</td><td>seminaarisali</td><td>AU203</td><td>20</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi40"><td>Joensuu</td><td>Aurora</td><td>seminaarisali</td><td>AU204</td><td>29</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi41"><td>Joensuu</td><td>Aurora</td><td>seminaarisali</td><td>AU205</td><td>40</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi42"><td>Joensuu</td><td>Aurora Ii</td><td>luentosali</td><td>AU206</td><td>70</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi43"><td>Joensuu</td><td>Aurora Ii</td><td>monitoimiluokka</td><td>AU207</td><td>20</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi44"><td>Joensuu</td><td>Aurora Ii</td><td>monitoimiluokka</td><td>AU208</td><td>20</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi45"><td>Joensuu</td><td>Aurora Ii</td><td>seminaarisali</td><td>AU209</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi46"><td>Joensuu</td><td>Aurora Ii</td><td>seminaarisali</td><td>AU210</td><td>24</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi47"><td>Joensuu</td><td>Aurora</td><td>kokoushuone</td><td>AU270</td><td>14</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi48"><td>Joensuu</td><td>Borealis</td><td>auditorio</td><td>BOR100</td><td>56</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi49"><td>Joensuu</td><td>Borealis</td><td>seminaarisali</td><td>BOR101</td><td>56</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi50"><td>Joensuu</td><td>Borealis</td><td>atk-luokka</td><td>BOR102</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi51"><td>Joensuu</td><td>Borealis</td><td>opetuslaboratorio</td><td>BOR201</td><td>12</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi52"><td>Joensuu</td><td>Borealis</td><td>kokoushuone</td><td>BOR301</td><td>10</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi53"><td>Joensuu</td><td>Borealis</td><td>atk-luokka</td><td>BOR302</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi54"><td>Joensuu</td><td>Carelia</td><td>auditorio</td><td>C2</td><td>150</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi55"><td>Joensuu</td><td>Carelia</td><td>auditorio</td><td>CARELIA-SALI</td><td>599</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi56"><td>Joensuu</td><td>Carelia</td><td>videoneuvottelutila</td><td>CK216</td><td>12</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi57"><td>Joensuu</td><td>Educa</td><td>auditorio</td><td>E100</td><td>184</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi58"><td>Joensuu</td><td>Educa</td><td>seminaarisali</td><td>E101</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi59"><td>Joensuu</td><td>Educa</td><td>varhaiskasvatus ja draama</td><td>E102</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi60"><td>Joensuu</td><td>Educa</td><td>seminaarisali</td><td>E103</td><td>25</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi61"><td>Joensuu</td><td>Educa</td><td>luentosali</td><td>E200</td><td>90</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi62"><td>Joensuu</td><td>Educa</td><td>monimedialuokka</td><td>E201</td><td>15</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi63"><td>Joensuu</td><td>Educa</td><td>kuvataide</td><td>E202</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi64"><td>Joensuu</td><td>Educa</td><td>keramiikka</td><td>E203</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi65"><td>Joensuu</td><td>Educa</td><td>kuvataide</td><td>E204</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi66"><td>Joensuu</td><td>Educa</td><td>kuvataide</td><td>E205</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi67"><td>Joensuu</td><td>Educa, Itäsiipi</td><td>seminaarisali</td><td>E212</td><td>16</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi68"><td>Joensuu</td><td>Educa, Itäsiipi</td><td>seminaarisali</td><td>E213</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi69"><td>Joensuu</td><td>Educa, Itäsiipi</td><td>seminaarisali</td><td>E214</td><td>22</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi70"><td>Joensuu</td><td>Educa, Itäsiipi</td><td>luentosali</td><td>E215</td><td>84</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi71"><td>Joensuu</td><td>Educa</td><td>musiikki</td><td>E301</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi72"><td>Joensuu</td><td>Educa</td><td>musiikki</td><td>E302</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi73"><td>Joensuu</td><td>Educa</td><td>studio</td><td>E303</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi74"><td>Joensuu</td><td>Educa</td><td>musiikki</td><td>E304</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi75"><td>Joensuu</td><td>Futura</td><td>auditorio</td><td>F100</td><td>108</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi76"><td>Joensuu</td><td>Futura</td><td>auditorio</td><td>F101</td><td>54</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi77"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F102</td><td>18</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi78"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F103</td><td>41</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi79"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F104</td><td>29</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi80"><td>Joensuu</td><td>Futura</td><td>atk-luokka</td><td>F109</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi81"><td>Joensuu</td><td>Futura</td><td>kokous</td><td>F110</td><td>20</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi82"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F111</td><td>40</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi83"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F112</td><td>41</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi84"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F113</td><td>40</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi85"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F200</td><td>36</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi86"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F201</td><td>36</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi87"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F202</td><td>60</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi88"><td>Joensuu</td><td>Futura</td><td>luentosali</td><td>F210</td><td>84</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi89"><td>Joensuu</td><td>Futura</td><td>seminaarisali</td><td>F211</td><td>42</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi90"><td>Joensuu</td><td>Futura</td><td>laboratorio</td><td>F224</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi91"><td>Joensuu</td><td>Futura</td><td>atk-luokka</td><td>F226C</td><td>12</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi92"><td>Joensuu</td><td>Futura</td><td>laboratorio</td><td>F301</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi93"><td>Joensuu</td><td>Futura</td><td>smartroom</td><td>F310</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi94"><td>Joensuu</td><td>Metria</td><td>auditorio</td><td>M100</td><td>250</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi95"><td>Joensuu</td><td>Metria</td><td>auditorio</td><td>M101</td><td>126</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi96"><td>Joensuu</td><td>Metria</td><td>auditorio</td><td>M102</td><td>50</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi97"><td>Joensuu</td><td>Metria</td><td>auditorio</td><td>M103</td><td>80</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi98"><td>Joensuu</td><td>Metria</td><td>atk-luokka</td><td>M104</td><td>30</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi99"><td>Joensuu</td><td>Metria</td><td>seminaarisali</td><td>M105</td><td>47</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi100"><td>Joensuu</td><td>Metria</td><td>seminaarisali</td><td>M106</td><td>42</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi101"><td>Joensuu</td><td>Metria</td><td>seminaarisali</td><td>M107</td><td>42</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi102"><td>Joensuu</td><td>Metria</td><td>seminaarisali</td><td>M108</td><td>28</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi103"><td>Joensuu</td><td>Metria</td><td>seminaarisali</td><td>M109</td><td>42</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi104"><td>Joensuu</td><td>Metria</td><td>seminaarisali</td><td>M110</td><td>42</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi105"><td>Joensuu</td><td>Metria</td><td>kokoushuone</td><td>M201</td><td>15</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi106"><td>Joensuu</td><td>Metria</td><td>luentosali</td><td>M301</td><td>72</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi107"><td>Joensuu</td><td>Metria</td><td>kokoushuone</td><td>M302</td><td>12</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi108"><td>Joensuu</td><td>Metria</td><td>seminaarisali</td><td>M303</td><td>48</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi109"><td>Joensuu</td><td>Metria</td><td>seminaarisali</td><td>M304</td><td>21</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi110"><td>Joensuu</td><td>Metria</td><td>seminaarisali</td><td>M305</td><td>21</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi111"><td>Joensuu</td><td>Metria</td><td>kokoushuone</td><td>M306</td><td>12</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi112"><td>Joensuu</td><td>Metla</td><td>seminaarisali</td><td>MET1100</td><td>15</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi113"><td>Joensuu</td><td>Natura</td><td>auditorio</td><td>N100</td><td>84</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi114"><td>Joensuu</td><td>Natura</td><td>seminaarisali</td><td>N101</td><td>56</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi115"><td>Joensuu</td><td>Natura</td><td>seminaarisali</td><td>N102</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi116"><td>Joensuu</td><td>Natura</td><td>seminaarisali</td><td>N103</td><td>32</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi117"><td>Joensuu</td><td>Natura</td><td>seminaarisali</td><td>N104</td><td>32</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi118"><td>Joensuu</td><td>Natura</td><td>seminaarisali</td><td>N105</td><td>40</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi119"><td>Joensuu</td><td>Natura</td><td>seminaarisali</td><td>N106</td><td>36</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi120"><td>Joensuu</td><td>Natura</td><td>seminaarisali</td><td>N107</td><td>40</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi121"><td>Joensuu</td><td>Natura</td><td>ryhmätyötila</td><td>N110</td><td>30</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi122"><td>Joensuu</td><td>Natura</td><td>atk-luokka (24/7 tila)</td><td>N111</td><td>20</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi123"><td>Joensuu</td><td>Natura</td><td>monitoimiluokka</td><td>N113</td><td>40</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi124"><td>Joensuu</td><td>Natura</td><td>atk-luokka (24/7 tila)</td><td>N114</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi125"><td>Joensuu</td><td>Natura</td><td>videoneuvottelutila</td><td>N201</td><td>14</td><td>Kylla/Yes</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi126"><td>Joensuu</td><td>Natura</td><td>atk-luokka</td><td>N202</td><td>15</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi127"><td>Joensuu</td><td>Natura</td><td>laboratorio</td><td>N211</td><td>16</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi128"><td>Joensuu</td><td>Natura</td><td>laboratorio</td><td>N212</td><td>16</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi129"><td>Joensuu</td><td>Natura</td><td>ruokasali</td><td>N301</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi130"><td>Joensuu</td><td>Natura</td><td>opetuskeittiö</td><td>N302</td><td>20</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi131"><td>Joensuu</td><td>Natura</td><td>opetuskeittiö</td><td>N303</td><td>20</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi132"><td>Joensuu</td><td>Natura</td><td>pesuteknologia</td><td>N304</td><td>20</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi133"><td>Joensuu</td><td>Natura</td><td>laboratorio</td><td>N311</td><td>16</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi134"><td>Joensuu</td><td>Natura</td><td>laboratorio</td><td>N312</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi135"><td>Joensuu</td><td>Natura</td><td>laboratorio</td><td>N313</td><td>16</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi136"><td>Joensuu</td><td>Taitola</td><td>metallikonesali</td><td>TA101</td><td>13</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi137"><td>Joensuu</td><td>Taitola</td><td>puukonesali</td><td>TA104</td><td>13</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi138"><td>Joensuu</td><td>Taitola</td><td>pintakäsittely</td><td>TA105</td><td>4</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi139"><td>Joensuu</td><td>Taitola</td><td>hionta</td><td>TA109</td><td>4</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi140"><td>Joensuu</td><td>Taitola</td><td>penkkisali</td><td>TA110</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi141"><td>Joensuu</td><td>Taitola</td><td>penkkisali</td><td>TA112</td><td>24</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi142"><td>Joensuu</td><td>Taitola</td><td>yleisluokka</td><td>TA123</td><td>22</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi143"><td>Joensuu</td><td>Taitola</td><td>muovipaja</td><td>TA128</td><td>6</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi144"><td>Joensuu</td><td>Taitola</td><td>kivipaja</td><td>TA128A</td><td>6</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi145"><td>Joensuu</td><td>Taitola</td><td>ompelustudio</td><td>TA138</td><td>32</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi146"><td>Joensuu</td><td>Taitola</td><td>tekstiilipaja</td><td>TA139</td><td>25</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi147"><td>Joensuu</td><td>Taitola</td><td>suunnittelu</td><td>TA206</td><td>57</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi148"><td>Joensuu</td><td>Taitola</td><td>väripaja</td><td>TA207</td><td>22</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi149"><td>Joensuu</td><td>Taitola</td><td>kudontastudio</td><td>TA208</td><td>22</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi150"><td>Joensuu</td><td>Taitola</td><td>ideahautomo</td><td>TA217</td><td>22</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi151"><td>Joensuu</td><td>Tiedepuisto, I-Vaihe</td><td>seminaarisali</td><td>TB178</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi152"><td>Joensuu</td><td>Tiedepuisto, I-Vaihe</td><td>seminaarisali</td><td>TB180</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi153"><td>Joensuu</td><td>Tiedepuisto, I-Vaihe</td><td>atk-luokka</td><td>TB247</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi154"><td>Joensuu</td><td>Tiedepuisto, I-Vaihe</td><td>seminaarisali</td><td>TB248</td><td></td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        <tr id="rivi155"><td>Joensuu</td><td>Tulliportin Koulu</td><td>auditorio</td><td>TK100</td><td>312</td><td>Ei/No</td><td><a href="https://127.0.0.1:3000">Ohjesivu / guide</a></td></tr>
+        
+</table>
 
     
 <script>
 
     // muuttujat liukurille ja lukukentälle
+    // variables for sliders and input fields
     var liukuri_min = document.getElementById("liuku_min");
     var liukuri_max = document.getElementById("liuku_max");
     var luku_min = document.getElementById("luku_min");
@@ -61,6 +249,8 @@
     luku_min.value = liukuri_min.value;
     luku_max.value = liukuri_max.value;
 
+    // Muutetaan kentän arvo, jos liukuria liutetaan.
+    // Change input field value if slider is slided.
     liukuri_min.oninput = function(){ 
         luku_min.value = this.value;
      }
@@ -68,6 +258,8 @@
         liukuri_min.value = this.value;
     }
 
+    // Muutetaan liukurin arvoa, jos kentän arvoa muutetaan.
+    // Change slider value if input field number is changed.
     liukuri_max.oninput = function(){ 
         luku_max.value = this.value;
      }
@@ -75,65 +267,30 @@
         liukuri_max.value = this.value;
     }
 
+    // Toiminto rajausnapille
+    // Function for filter button
     function listaa(){
 
-        //tyhjennä ensin vanhat pois
-        document.getElementById("taulukko").innerHTML="";
+        // Haetaan taulukon tiedot.
+        //Fetch table from document.
+        var taulukko = document.getElementById("tilataulukko");
+        var suodatus = luku_max.value
         
-        // teksti, johon tuloksia lisätään
-        var testausta = "";
+        // Lähdetään rivi-indexistä 1 liikkeelle. Start from second row forward (index# 1).
+        for (i=1; i < taulukko.rows.length; i++){
 
-        // kampus luuppi
-        for(let kampus in tilat){
-
-            //tila luuppi
-            for (let tila in tilat[kampus]){
-
-                if (document.getElementById('kampus1').checked
-                && tilat[kampus][tila].kapasiteetti >= luku_min.value
-                && tilat[kampus][tila].kapasiteetti <= luku_max.value)
-                {
-                    if (kampus == "Joensuu" && document.getElementById('vc').checked == 
-                    tilat[kampus][tila].videoneuvottelulaite){
-                        testausta += kampus +"   " 
-                        + tilat[kampus][tila].tunnus+"   " 
-                        + tilat[kampus][tila].kapasiteetti +"   "
-                        if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
-                        testausta += "<br>";
-                    } else if (kampus == "Joensuu" && !document.getElementById('vc').checked){
-                        testausta += kampus +"   " 
-                        + tilat[kampus][tila].tunnus+"   " 
-                        + tilat[kampus][tila].kapasiteetti + "   "
-                        if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
-                        testausta += "<br>";
-                    }
-                }
-
-                if (document.getElementById('kampus2').checked
-                && tilat[kampus][tila].kapasiteetti >= luku_min.value
-                && tilat[kampus][tila].kapasiteetti <= luku_max.value)
-                {
-                    if (kampus == "Kuopio"&& document.getElementById('vc').checked == 
-                    tilat[kampus][tila].videoneuvottelulaite){
-                        testausta += kampus +"   " 
-                        + tilat[kampus][tila].tunnus+"   " 
-                        + tilat[kampus][tila].kapasiteetti + "  "
-                        if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
-                        testausta += "<br>";
-                    } else if (kampus == "Kuopio" && !document.getElementById('vc').checked){
-                        testausta += kampus +"   " 
-                        + tilat[kampus][tila].tunnus+"   " 
-                        + tilat[kampus][tila].kapasiteetti + "   "
-                        if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
-                        testausta += "<br>";
-                    } 
-                }
-
+            // Jos henkilömäärä pienenmpi suodatusarvoa, piilota rivi.
+            // If people capacity lower than filter value, hide row.
+            if (taulukko.rows[i].cells[4].textContent < suodatus){
+                document.getElementById( document.getElementsByTagName("tr")[i].id ).style.display="none";
+            }
+            // Muutoin näytä rivi
+            // Else show row
+            else {
+                document.getElementById( document.getElementsByTagName("tr")[i].id ).style="display:table-row;";
             }
         }
-        
 
-        document.getElementById("taulukko").innerHTML=testausta;
     }
     
 
