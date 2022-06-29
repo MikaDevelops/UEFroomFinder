@@ -610,7 +610,7 @@
 
 <body>
 
-    Valitse kampus<br>
+    Valitse kampus // Choose campus<br>
 
     <form>
         
@@ -621,14 +621,25 @@
         <label for="kampus2">Kuopio</label>
         <br><br>
         <input type="checkbox" id="vc" name="vc" value="vc">
-        <label for="vc">Videoneuvottelulaite (voi liittyä UEF:n MS Teams kokouksiin)</label>
+        <label for="vc">Videoneuvottelulaite (voi liittyä UEF:n MS Teams kokouksiin)<br>
+            Video conferencing device (can join UEF MS Teams meetings)
+        </label>
         <br><br>
 
-        Henkilöitä paikalla:<br>
+        Vähimmäisvaatimus henkilökapasiteetille<br>
+        Minimum capacity for people (persons):
         <div class="slidercontainer">
-            <input type="range" min="2" max="600" value="25" class="slider" id="liuku">
-            <br><input id="luku" name="luku" type="text" value=""><br><br>
+            <input type="range" min="2" max="600" value="25" class="slider" id="liuku_min">
+            <br><input id="luku_min" name="luku_min" type="number" value=""><br><br>
         </div>
+
+        Rajaa liian isot tilat<br>
+        Filter too big rooms:
+        <div class="slidercontainer2">
+            <input type="range" min="10" max="600" value="600" class="slider" id="liuku_max">
+            <br><input id="luku_max" name="luku_max" type="number" value=""><br><br>
+        </div>
+
         <button type="button" onclick="listaa()">listaa tilat</button> <br><br><br>
         
         
@@ -639,17 +650,30 @@
 
     
 <script>
-    var liukuri = document.getElementById("liuku");
-    var luku = document.getElementById("luku");
-    
-    luku.value = liukuri.value;
 
-    liukuri.oninput = function(){ 
-        luku.value = this.value;
+    // muuttujat liukurille ja lukukentälle
+    var liukuri_min = document.getElementById("liuku_min");
+    var liukuri_max = document.getElementById("liuku_max");
+    var luku_min = document.getElementById("luku_min");
+    var luku_max = document.getElementById("luku_max");
+
+    luku_min.value = liukuri_min.value;
+    luku_max.value = liukuri_max.value;
+
+    liukuri_min.oninput = function(){ 
+        luku_min.value = this.value;
      }
-    luku.oninput = function(){
-        liukuri.value = this.value;
+    luku_min.oninput = function(){
+        liukuri_min.value = this.value;
     }
+
+    liukuri_max.oninput = function(){ 
+        luku_max.value = this.value;
+     }
+    luku_max.oninput = function(){
+        liukuri_max.value = this.value;
+    }
+
     function listaa(){
 
         //tyhjennä ensin vanhat pois
@@ -665,7 +689,9 @@
             for (let tila in tilat[kampus]){
 
                 if (document.getElementById('kampus1').checked
-                && tilat[kampus][tila].kapasiteetti >= luku.value){
+                && tilat[kampus][tila].kapasiteetti >= luku_min.value
+                && tilat[kampus][tila].kapasiteetti <= luku_max.value)
+                {
                     if (kampus == "Joensuu" && document.getElementById('vc').checked == 
                     tilat[kampus][tila].videoneuvottelulaite){
                         testausta += kampus +"   " 
@@ -683,7 +709,9 @@
                 }
 
                 if (document.getElementById('kampus2').checked
-                && tilat[kampus][tila].kapasiteetti >= luku.value){
+                && tilat[kampus][tila].kapasiteetti >= luku_min.value
+                && tilat[kampus][tila].kapasiteetti <= luku_max.value)
+                {
                     if (kampus == "Kuopio"&& document.getElementById('vc').checked == 
                     tilat[kampus][tila].videoneuvottelulaite){
                         testausta += kampus +"   " 
