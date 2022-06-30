@@ -610,7 +610,7 @@
 
 <body>
 
-    Valitse kampus<br>
+    Valitse kampus / Choose Campus<br>
 
     <form>
         
@@ -624,10 +624,18 @@
         <label for="vc">Videoneuvottelulaite (voi liittyä UEF:n MS Teams kokouksiin)</label>
         <br><br>
 
-        Henkilöitä paikalla:<br>
+        Minimi tilantarve (henkilöä)<br>
+        Minimum needed room for people (persons):
         <div class="slidercontainer">
             <input type="range" min="2" max="600" value="25" class="slider" id="liuku">
-            <br><input id="luku" name="luku" type="text" value=""><br><br>
+            <br><input id="luku" name="luku" type="number" value="2" min="2" max="600"><br><br>
+        </div>
+
+        Rajaa suuria tiloja (kapasiteetti pienempi kuin)<br>
+        Limit largest shown rooms (capacity smaller than):
+        <div class="slidercontainer">
+            <input type="range" min="30" max="600" value="600" class="slider" id="liukuMax">
+            <br><input id="lukuMax" name="lukuMax" type="number" value="600" min="30" max="600"><br><br>
         </div>
         <button type="button" onclick="listaa()">listaa tilat</button> <br><br><br>
         
@@ -639,18 +647,45 @@
 
     
 <script>
+    // Minimiliukuri ja minimi syötekenttä
     var liukuri = document.getElementById("liuku");
     var luku = document.getElementById("luku");
-    
-    luku.value = liukuri.value;
 
+    // jos liukuria siirretään, asetetaan arvo syötekenttään
     liukuri.oninput = function(){ 
         luku.value = this.value;
-     }
-    luku.oninput = function(){
-        liukuri.value = this.value;
     }
+    
+    // kun lukuarvokenttään syötetään luku suoritetaan
+    // tämä funktio, joka asettaa liukurin arvon samaan
+    luku.oninput = function(){
+            liukuri.value = this.value;
+    }
+
+    // Maksimiliukuri ja maksimi syötekenttä
+    var liukuriMax = document.getElementById("liukuMax");
+    var lukuMax = document.getElementById("lukuMax");
+
+    liukuriMax.oninput = function(){ 
+        lukuMax.value = this.value;
+     }
+    
+    lukuMax.oninput = function(){
+            liukuriMax.value = this.value;
+    }
+
     function listaa(){
+        // numerosyötekentän arvot rajoihin, jos ylityksiä tai alituksia
+        if (luku.value < 2){
+            luku.value = 2;
+        }else if (luku.value > 600){
+            luku.value = 600;
+        }
+        if (lukuMax.value < 30){
+            lukuMax.value = 30;
+        }else if (lukuMax.value > 600){
+            lukuMax.value = 600;
+        }
 
         //tyhjennä ensin vanhat pois
         document.getElementById("taulukko").innerHTML="";
@@ -664,8 +699,11 @@
             //tila luuppi
             for (let tila in tilat[kampus]){
 
+                // Jos kampus1 valittuna
                 if (document.getElementById('kampus1').checked
-                && tilat[kampus][tila].kapasiteetti >= luku.value){
+                && tilat[kampus][tila].kapasiteetti >= luku.value
+                && tilat[kampus][tila].kapasiteetti <= lukuMax.value)
+                {
                     if (kampus == "Joensuu" && document.getElementById('vc').checked == 
                     tilat[kampus][tila].videoneuvottelulaite){
                         testausta += kampus +"   " 
@@ -682,6 +720,7 @@
                     }
                 }
 
+                // Jos kampus2 valittuna
                 if (document.getElementById('kampus2').checked
                 && tilat[kampus][tila].kapasiteetti >= luku.value){
                     if (kampus == "Kuopio"&& document.getElementById('vc').checked == 
