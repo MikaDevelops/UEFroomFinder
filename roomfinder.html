@@ -621,11 +621,12 @@
         <label for="kampus2">Kuopio</label>
         <br><br>
         <input type="checkbox" id="vc" name="vc" value="vc">
-        <label for="vc">Videoneuvottelulaite (voi liittyä UEF:n MS Teams kokouksiin)</label>
+        <label for="vc">Videoneuvottelulaite (voi liittyä UEF:n MS Teams kokouksiin)<br>
+        Videoconferencing device (can join UEF MS Teams meeting)</label>
         <br><br>
 
         Minimi tilantarve (henkilöä)<br>
-        Minimum needed room for people (persons):
+        Minimum needed capacity for people (persons):
         <div class="slidercontainer">
             <input type="range" min="2" max="600" value="25" class="slider" id="liuku">
             <br><input id="luku" name="luku" type="number" value="2" min="2" max="600"><br><br>
@@ -633,7 +634,7 @@
 
         Rajaa suuria tiloja (kapasiteetti pienempi kuin)<br>
         Limit largest shown rooms (capacity smaller than):
-        <div class="slidercontainer">
+        <div class="slidercontainer2">
             <input type="range" min="30" max="600" value="600" class="slider" id="liukuMax">
             <br><input id="lukuMax" name="lukuMax" type="number" value="600" min="30" max="600"><br><br>
         </div>
@@ -650,28 +651,33 @@
     // Minimiliukuri ja minimi syötekenttä
     var liukuri = document.getElementById("liuku");
     var luku = document.getElementById("luku");
-
-    // jos liukuria siirretään, asetetaan arvo syötekenttään
-    liukuri.oninput = function(){ 
-        luku.value = this.value;
-    }
-    
-    // kun lukuarvokenttään syötetään luku suoritetaan
-    // tämä funktio, joka asettaa liukurin arvon samaan
-    luku.oninput = function(){
-            liukuri.value = this.value;
-    }
-
     // Maksimiliukuri ja maksimi syötekenttä
     var liukuriMax = document.getElementById("liukuMax");
     var lukuMax = document.getElementById("lukuMax");
 
-    liukuriMax.oninput = function(){ 
-        lukuMax.value = this.value;
-     }
+    // jos minimikapasiteettiliukuria siirretään,
+    // asetetaan arvo syötekenttään
+    liukuri.oninput = function(){ 
+        
+        luku.value = liukuri.value;
+        
+    }
     
+    // kun lukuarvokenttään syötetään luku, suoritetaan
+    // tämä funktio, joka asettaa liukurin arvon samaan
+    luku.oninput = function(){
+
+        liukuri.value = luku.value;
+
+    }
+
+
+    // Maksimikapasiteettiliukurin ja -syötekentän vastaavat
+    liukuriMax.oninput = function(){ 
+        lukuMax.value = liukuriMax.value;
+     }
     lukuMax.oninput = function(){
-            liukuriMax.value = this.value;
+            liukuriMax.value = lukuMax.value;
     }
 
     function listaa(){
@@ -722,7 +728,9 @@
 
                 // Jos kampus2 valittuna
                 if (document.getElementById('kampus2').checked
-                && tilat[kampus][tila].kapasiteetti >= luku.value){
+                && tilat[kampus][tila].kapasiteetti >= luku.value
+                && tilat[kampus][tila].kapasiteetti <= lukuMax.value)
+                {
                     if (kampus == "Kuopio"&& document.getElementById('vc').checked == 
                     tilat[kampus][tila].videoneuvottelulaite){
                         testausta += kampus +"   " 
