@@ -781,7 +781,7 @@
         var taulu = document.createElement("TABLE");
         taulu.setAttribute("id", "tilataulukko");
         document.getElementById("taulukko").insertAdjacentElement("afterend", taulu);
-        
+         
     // kampus luuppi
     for(let kampus in tilat){
 
@@ -795,22 +795,52 @@
             {
                 if (kampus == "Joensuu" && document.getElementById('vc').checked == 
                 tilat[kampus][tila].videoneuvottelulaite){
-                    testausta += kampus +"   " 
-                    + tilat[kampus][tila].tunnus+"   " 
-                    + tilat[kampus][tila].kapasiteetti +"   "
-                    if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
-                    testausta += "<br>";
-                } else if (kampus == "Joensuu" && !document.getElementById('vc').checked){
+
+                    // Luodaan rivi.
+                    // Create row.
+                    let rivi = document.createElement("TR");
+
+                    // Kampus solu. Campus cell.
+                    sisalto = kampus;
+                    let kampusSolu = document.createElement("TD");
+                    kampusSolu.appendChild(document.createTextNode(sisalto));
+
+                    // Huone tunnus solu. Room identifier cell.
+                    let tunnusSolu = document.createElement("TD");
+                    tunnusSolu.appendChild(document.createTextNode(tilat[kampus][tila].tunnus));
+                    
+                    // Kapasiteetti solu. Capacity cell.
+                    let kapasiteettiSolu = document.createElement("TD");
+                    kapasiteettiSolu.appendChild(document.createTextNode(tilat[kampus][tila].kapasiteetti));
+
+                    // Ohjelinkki solu. Guide link cell.
+                    let ohjeSolu = document.createElement("TD");
+                    if (tilat[kampus][tila].ohje != undefined){
+                        let ohjeSisalto = document.createTextNode("ohjesivu");
+                        let linkki = document.createElement("a");
+                        linkki.appendChild(ohjeSisalto);
+                        linkki.href = tilat[kampus][tila].ohje;
+                        linkki.title = "tilan ohjesivu / guide web page"
+                        ohjeSolu.appendChild(linkki);}
+
+                    rivi.appendChild(kampusSolu);
+                    rivi.appendChild(tunnusSolu);
+                    rivi.appendChild(kapasiteettiSolu);
+                    rivi.appendChild(ohjeSolu);
+                    
+                    document.getElementById("tilataulukko").appendChild(rivi);
+
+                } /*else if (kampus == "Joensuu" && !document.getElementById('vc').checked){
                     testausta += kampus +"   " 
                     + tilat[kampus][tila].tunnus+"   " 
                     + tilat[kampus][tila].kapasiteetti + "   "
                     if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
                     testausta += "<br>";
-                }
+                }*/
             }
-
+            
             // Jos kampus2 valittuna
-            if (document.getElementById('kampus2').checked
+            /*if (document.getElementById('kampus2').checked
             && tilat[kampus][tila].kapasiteetti >= luku.value
             && tilat[kampus][tila].kapasiteetti <= lukuMax.value)
             {
@@ -828,13 +858,14 @@
                     if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
                     testausta += "<br>";
                 } 
-            }
+            }*/
 
-            }
         }
+        }  
         
-        /* testausta. testing.
-        var rivi = document.createElement("TR");
+        
+        
+       /*  var rivi = document.createElement("TR");
         rivi.setAttribute("id", "rivi1");
         document.getElementById("tilataulukko").appendChild(rivi);
        
@@ -842,7 +873,12 @@
         var sisalto = document.createTextNode("soooluu");
         
         solu.appendChild(sisalto);
-        document.getElementById("rivi1").appendChild(solu);*/
+        document.getElementById("rivi1").appendChild(solu);
+
+        sisalto.replaceWith("solu2");
+        solu.remove;
+        document.getElementById("rivi1").appendChild(solu); */
+
     }
     
 
