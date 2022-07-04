@@ -822,12 +822,14 @@
                         linkki.href = tilat[kampus][tila].ohje;
                         linkki.title = "tilan ohjesivu / guide web page"
                         ohjeSolu.appendChild(linkki);}
-
+                    
+                    // Lisätään solut riville. Add cells to row.
                     rivi.appendChild(kampusSolu);
                     rivi.appendChild(tunnusSolu);
                     rivi.appendChild(kapasiteettiSolu);
                     rivi.appendChild(ohjeSolu);
                     
+                    // Lisätään rivi taulukkoon. Add row to table.
                     document.getElementById("tilataulukko").appendChild(rivi);
 
                 } /*else if (kampus == "Joensuu" && !document.getElementById('vc').checked){
