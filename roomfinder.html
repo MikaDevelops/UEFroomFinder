@@ -826,7 +826,26 @@
         var taulu = document.createElement("TABLE");
         taulu.setAttribute("id", taulukonID);
         document.getElementById("taulukko").insertAdjacentElement("afterend", taulu);
-         
+
+        // Luodaan otsikkorivi.
+        // Create table header row.
+        var otsikkorivi = document.createElement("TR");
+        var otsikkoSolu0 = document.createElement("TH");
+        var otsikkoSolu1 = document.createElement("TH");
+        var otsikkoSolu2 = document.createElement("TH");
+        var otsikkoSolu3 = document.createElement("TH");
+
+        otsikkoSolu0.appendChild(document.createTextNode("Kampus"));
+        otsikkoSolu1.appendChild(document.createTextNode("Tila / Room"));
+        otsikkoSolu2.appendChild(document.createTextNode("Max henk."));
+        otsikkoSolu3.appendChild(document.createTextNode("Ohje / Guide"));
+
+        otsikkorivi.appendChild(otsikkoSolu0);
+        otsikkorivi.appendChild(otsikkoSolu1);
+        otsikkorivi.appendChild(otsikkoSolu2);
+        otsikkorivi.appendChild(otsikkoSolu3);
+        document.getElementById(taulukonID).appendChild(otsikkorivi);
+
     // kampus luuppi
     for(let kampus in tilat){
 
