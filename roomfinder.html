@@ -843,35 +843,29 @@
 
                     taytaTaulukko(kampus, tila);
 
-                } /*else if (kampus == "Joensuu" && !document.getElementById('vc').checked){
-                    testausta += kampus +"   " 
-                    + tilat[kampus][tila].tunnus+"   " 
-                    + tilat[kampus][tila].kapasiteetti + "   "
-                    if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
-                    testausta += "<br>";
-                }*/
+                } else if (kampus == "Joensuu" && !document.getElementById('vc').checked){
+                    
+                    taytaTaulukko(kampus, tila);
+
+                }
             }
             
             // Jos kampus2 valittuna
-            /*if (document.getElementById('kampus2').checked
+            if (document.getElementById('kampus2').checked
             && tilat[kampus][tila].kapasiteetti >= luku.value
             && tilat[kampus][tila].kapasiteetti <= lukuMax.value)
             {
                 if (kampus == "Kuopio"&& document.getElementById('vc').checked == 
                 tilat[kampus][tila].videoneuvottelulaite){
-                    testausta += kampus +"   " 
-                    + tilat[kampus][tila].tunnus+"   " 
-                    + tilat[kampus][tila].kapasiteetti + "  "
-                    if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
-                    testausta += "<br>";
+                    
+                    taytaTaulukko(kampus, tila);
+
                 } else if (kampus == "Kuopio" && !document.getElementById('vc').checked){
-                    testausta += kampus +"   " 
-                    + tilat[kampus][tila].tunnus+"   " 
-                    + tilat[kampus][tila].kapasiteetti + "   "
-                    if (tilat[kampus][tila].ohje != undefined){testausta += "<a href=\"" + tilat[kampus][tila].ohje + "\">ohje</a>"}
-                    testausta += "<br>";
+                    
+                    taytaTaulukko(kampus, tila);
+
                 } 
-            }*/
+            }
 
         }
         }  
